@@ -1,9 +1,5 @@
 # Transfer Durak — Rules Specification
 
-**Version:** 0.1 (draft)
-**Last updated:** 2026-04-23
-**Status:** Source of truth. If the code disagrees with this document, either the code is wrong or this document needs updating. Never let them drift.
-
 ---
 
 ## 1. Overview
@@ -237,6 +233,3 @@ If transfers/flashes occurred in the chain but the final defender successfully d
 
 ---
 
-## 12. Revision log
-
-- **0.1** (2026-04-23) — initial draft, based on conversation with Ben.
