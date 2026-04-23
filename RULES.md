@@ -1,6 +1,5 @@
 # Transfer Durak — Rules Specification
 
----
 
 ## 1. Overview
 
@@ -28,7 +27,10 @@ Transfer Durak is a trick-taking card game descended from Russian Durak. Players
 ### 2.3 Dealing
 
 1. Shuffle the deck.
-2. Deal 6 cards to each player, one at a time, in seating order.
+2. Deal cards to players in three passes of increasing size, always in seating order:
+   - **Pass 1:** 1 card to each player (all players now have 1 card).
+   - **Pass 2:** 2 cards to each player (all players now have 3 cards).
+   - **Pass 3:** 3 cards to each player (all players now have 6 cards).
 3. After dealing, flip the top card of the remaining deck face up — its suit is the **trump suit** for the game.
 4. Place the flipped trump card at the bottom of the talon, perpendicular and partly visible (so all players can see the trump suit throughout the game). It will be the last card drawn from the talon.
 
@@ -42,7 +44,7 @@ Transfer Durak is a trick-taking card game descended from Russian Durak. Players
 ### 2.5 Starting player
 
 - The player holding the **lowest trump card** in their hand attacks first.
-- If no player holds a trump (only possible with small player counts and bad luck), the player holding the lowest-ranked card overall starts. *(Edge case — very rare but must be handled.)*
+- If no player holds a trump card (only possible with small player counts and bad luck, since there are 13 trumps and 6×player_count cards dealt), a **random player** is selected to attack first.
 - This first attacker chooses the **direction of play** (clockwise or counter-clockwise). This direction is fixed for the entire game.
 
 ---
@@ -164,9 +166,7 @@ This applies regardless of whether the defence was successful or failed. The def
 
 ### 7.3 Players who didn't participate
 
-- Players who were neither the attacker, a throw-in, nor the defender in the round do not refill at all for that round if they already have 6+ cards. If they have fewer than 6 cards (from previous rounds where they received cards), they refill after the throw-ins but before the defender.
-
-*Note: This is a rule we should review — the above assumes non-participants also refill. Let me know if non-participants never refill at all.*
+- Players who were neither the attacker, a throw-in, nor the defender in the round do not refill. In normal play this is fine because a non-participant always has 6 cards — the only way to have fewer is to have picked up in a previous round, and picking up makes you a participant in that round, which means you refilled then.
 
 ---
 
@@ -201,7 +201,7 @@ If transfers/flashes occurred in the chain but the final defender successfully d
 - The game continues until the talon is empty AND all but one player have emptied their hands.
 - A player who empties their hand while the talon is empty is **out** of the game — they play no further rounds.
 - The last player holding cards is the **durak** (loser).
-- If two players are left and both empty their hands in the same round (extremely rare), the game is a draw.
+- There are no draws. If two players would empty their hands as a result of the same round, the one whose final action was resolved first by the server is the winner of that race; the other plays on (potentially alone, in which case they become the durak).
 
 ### 9.1 Play with fewer than 2 active players
 
@@ -226,10 +226,13 @@ If transfers/flashes occurred in the chain but the final defender successfully d
 
 ## 11. Open questions / decisions still to make
 
-1. **Non-participant refills** (§7.3) — confirm whether players who weren't attacker/thrower/defender still refill if under 6 cards, or are simply stuck with what they have until they participate in a round.
-2. **Edge case: no trumps dealt** (§2.5) — confirm the fallback of "lowest card overall starts" when nobody has a trump.
-3. **Draws** (§9) — confirm whether a tied final round is possible and how it should resolve.
-4. **Cheating** (future) — rules for illegal play, call-out mechanic, penalties. Deferred to v2.
+1. **Cheating** (future) — rules for illegal play, call-out mechanic, penalties. Deferred to v2.
+
+*All other rule questions from v0.1 have been resolved as of v0.2.*
 
 ---
 
+## 12. Revision log
+
+- **0.2** (2026-04-23) — corrected dealing order to 1+2+3 passes; no-trump fallback is random player; no draws (first-to-empty wins race); removed non-participant refill section (impossible in normal play).
+- **0.1** (2026-04-23) — initial draft
